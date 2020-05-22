@@ -6,7 +6,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="box-title">Daftar Produk</h4>
+                    <h4 class="box-title">Daftar Foto Produk <small>"{{$products->name}}"</small></h4>
                     </div>
                     <div class="card-body--">
                         <div class="table-stats order-table ov-h">
@@ -14,30 +14,25 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
-                                        <th>Type</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
+                                        <th>Nama Produk</th>
+                                        <th>Foto</th>
+                                        <th>Default</th>
                                         <th>Action</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
                                   @forelse ($items as $i)
                                   <tr>
                                     <td>{{$i->id}}</td>
-                                    <td>{{$i->name}}</td>
-                                    <td>{{$i->type}}</td>
-                                    <td>{{$i->price}}</td>
-                                    <td>{{$i->quantity}}</td>
-                                    <td>      
-                                        
-                                        <a href="{{route('product.gallery',$i->id)}}" class="btn btn-info btn-sm">
-                                        <i class="fa fa-picture-o"></i>
-                                        </a>
-                                    <a href="{{route('products.edit',$i->id)}}" class="btn btn-info btn-sm">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <form action="{{route('products.destroy',$i->id)}}" method="POST" class="d-inline">
+                                    <td>{{$i->products->name}}</td>
+                                    <td>
+                                    <img src="{{url($i->photo)}}" alt="" />
+                                    </td>
+                                     <td>{{$i->is_default ? 'Ya' : 'Tidak'}}</td>
+                                    <td>
+                                  
+                                        <form action="{{route('product-galleries.destroy',$i->id)}}" method="POST" class="d-inline">
                                             @csrf
                                             @method('delete')
                                             <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>

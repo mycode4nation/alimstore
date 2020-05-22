@@ -19,7 +19,11 @@ class Products extends Model
     ];
 
 
+//     public function transactions_details(){
+//         return $this->hasMany(TransactionsDetails::class,'products_id'); 
+//    }
+
     public function galleries(){
-        // return $this->hasMany(ProductGallery::class,'products_id'); 
+         return $this->hasMany(ProductGallery::class,'products_id'); 
     }
 }
